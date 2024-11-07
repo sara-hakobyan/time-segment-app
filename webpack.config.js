@@ -4,14 +4,14 @@ const express = require("express");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.tsx", // Entry point for your app
+  entry: "./src/index.tsx",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    clean: true, // Clean the output directory on each build
+    clean: true,
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"], // Resolve TypeScript and JS files
+    extensions: [".tsx", ".ts", ".js"],
   },
   module: {
     rules: [
@@ -20,33 +20,33 @@ module.exports = {
         use: {
           loader: "ts-loader",
           options: {
-            transpileOnly: true, // Speeds up compilation and avoids certain errors
+            transpileOnly: true,
           },
         },
         exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"], // Loaders for SASS
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.css$/, // Add this rule to handle CSS files
+        test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./public/index.html", // Template file for HTML
+      template: "./public/index.html",
     }),
   ],
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),
     },
-    port: 3000, // The same port as in `react-scripts` for consistency
-    open: true, // Opens the browser automatically
-    historyApiFallback: true, // Add this line
+    port: 3001,
+    open: true,
+    historyApiFallback: true,
     setupMiddlewares: (middlewares, devServer) => {
       if (!devServer) {
         throw new Error("webpack-dev-server is not defined");
